@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Load every spec in lua/plugins/
 require("lazy").setup({
   spec = { { import = "plugins" } },
-  install = { colorscheme = { "tokyonight" } }, -- theme used during first install
+  install = { colorscheme = { "material", "tokyonight" } }, -- theme used during first install
   checker = { enabled = true, notify = false },  -- quietly check for plugin updates
   change_detection = { notify = false },
 })

@@ -6,6 +6,7 @@ return {
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep in files" },
     { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+    { "<leader>ft", "<cmd>Telescope colorscheme enable_preview=true<cr>", desc = "Themes" },
   },
   opts = {},
 }
