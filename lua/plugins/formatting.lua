@@ -1,4 +1,5 @@
--- Format on save (uses the project's prettier from node_modules, or prettierd if installed)
+-- Format on save
+-- JS/TS: project's prettier from node_modules, or prettierd | Python: ruff
 local prettier = { "prettierd", "prettier", stop_after_first = true }
 
 return {
@@ -17,6 +18,7 @@ return {
       json = prettier,
       css = prettier,
       html = prettier,
+      python = { "ruff_organize_imports", "ruff_format" },
     },
     format_on_save = { timeout_ms = 500, lsp_format = "fallback" },
   },
