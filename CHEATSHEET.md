@@ -14,7 +14,8 @@
     ├── config/
     │   ├── lazy.lua      # Plugin manager bootstrap (rarely touched)
     │   ├── options.lua   # Built-in Neovim settings
-    │   └── keymaps.lua   # Shortcuts that don't need a plugin
+    │   ├── keymaps.lua   # Shortcuts that don't need a plugin
+    │   └── autocmds.lua  # Auto save
     └── plugins/          # One file per plugin/group (auto-loaded)
         ├── colorscheme.lua  # material (palenight), tokyonight
         ├── telescope.lua    # fuzzy finder
@@ -23,7 +24,7 @@
         ├── treesitter.lua   # syntax highlighting
         ├── explorer.lua     # neo-tree file explorer sidebar
         ├── git.lua          # diffview, lazygit
-        ├── formatting.lua   # prettier / ruff on save
+        ├── formatting.lua   # prettier / ruff on <leader>cf
         ├── editor.lua       # autopairs, autotag, git, which-key, trouble
         └── markdown.lua     # render markdown in the buffer
 ```
@@ -51,7 +52,7 @@
 | nvim-lspconfig    | Configs for language servers (see below)            |
 | blink.cmp         | Autocomplete popup                                  |
 | nvim-treesitter   | Accurate syntax highlighting + indentation          |
-| conform.nvim      | Formats on save (`:ConformInfo`)                    |
+| conform.nvim      | Formats with `<leader>cf` (`:ConformInfo`)          |
 | nvim-ts-autotag   | Auto close/rename JSX/HTML tags                     |
 | mini.pairs        | Auto close brackets and quotes                      |
 | gitsigns.nvim     | Git changes in the gutter, blame                    |
@@ -64,11 +65,13 @@
 
 ## Languages
 
-| Language   | Language servers                  | Format on save          |
+| Language   | Language servers                  | Format (`<leader>cf`)   |
 |------------|-----------------------------------|-------------------------|
 | TypeScript | vtsls (types), eslint (lint)      | prettier + ESLint fixes |
 | Python     | pyright (types), ruff (lint)      | ruff (sort imports + format) |
 | Kotlin, Java | — (syntax highlighting only)    | —                       |
+
+Files auto save when you leave insert mode, change text in normal mode (`dd`, `p`, `u`), switch buffers, or switch away from nvim. Saving doesn't format; use `<leader>cf`.
 
 Python auto-uses the project's `.venv/` if present.
 
@@ -94,7 +97,7 @@ Lost? Press `<leader>` and wait (which-key), or `?` / `g?` inside the explorer o
 
 | Key              | Action                         |
 |------------------|--------------------------------|
-| `<leader>w`      | Save                           |
+| `<leader>w`      | Save (files also auto save)    |
 | `<leader>q`      | Quit                           |
 | `<leader>l`      | Open Lazy (plugin manager)     |
 | `Esc`            | Clear search highlight         |
@@ -137,10 +140,10 @@ Lost? Press `<leader>` and wait (which-key), or `?` / `g?` inside the explorer o
 | `gri`            | Go to implementation              |
 | `grt`            | Go to type definition             |
 | `gO`             | Symbols in file                   |
-| `Ctrl-s` (insert)| Show function signature           |
+| `Ctrl-s` (insert)| Show function signature (cursor inside `fn(...)`) |
 | `]d` / `[d`      | Next / previous error             |
 | `<leader>cd`     | Show full error for line          |
-| `<leader>cf`     | Format file                       |
+| `<leader>cf`     | Format file (and ESLint fixes)    |
 | `Ctrl-o`         | Jump back (after `gd`)            |
 
 **Autocomplete (insert mode)**
