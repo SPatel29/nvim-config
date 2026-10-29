@@ -21,8 +21,11 @@
         ├── lsp.lua          # language servers (TS, ESLint, Python)
         ├── completion.lua   # autocomplete popup
         ├── treesitter.lua   # syntax highlighting
+        ├── explorer.lua     # neo-tree file explorer sidebar
+        ├── git.lua          # diffview, lazygit
         ├── formatting.lua   # prettier / ruff on save
-        └── editor.lua       # autopairs, autotag, git, which-key, trouble
+        ├── editor.lua       # autopairs, autotag, git, which-key, trouble
+        └── markdown.lua     # render markdown in the buffer
 ```
 
 ## Where does it go?
@@ -54,6 +57,10 @@
 | gitsigns.nvim     | Git changes in the gutter, blame                    |
 | which-key.nvim    | Popup listing shortcuts                             |
 | trouble.nvim      | List of all errors in project                       |
+| render-markdown   | Pretty markdown in the buffer (`<leader>mr` toggle) |
+| neo-tree.nvim     | File explorer sidebar (needs a Nerd Font for icons) |
+| diffview.nvim     | Side-by-side diff of changes, file history          |
+| lazygit.nvim      | lazygit in a floating window                        |
 
 ## Languages
 
@@ -61,8 +68,25 @@
 |------------|-----------------------------------|-------------------------|
 | TypeScript | vtsls (types), eslint (lint)      | prettier + ESLint fixes |
 | Python     | pyright (types), ruff (lint)      | ruff (sort imports + format) |
+| Kotlin, Java | — (syntax highlighting only)    | —                       |
 
 Python auto-uses the project's `.venv/` if present.
+
+## Navigation at a glance
+
+| Keys | Goes to |
+|---|---|
+| `<leader>ff` / `fg` / `fb` / `fs` | Find file / text in project / open file / symbol in file |
+| `<leader>e` | File explorer (click or `Enter` to open, `/` to search) |
+| `gd` / `grr` / `gri` | Definition / references / implementation |
+| `Ctrl-o` / `Ctrl-i` | Jump back / forward |
+| `]d` / `[d` | Next / previous error |
+| `]h` / `[h` | Next / previous git change in file |
+| `Ctrl-h/j/k/l` | Move between splits (e.g. explorer and code) |
+| `<leader>gd` then `Tab` / `Shift-Tab` | Diff view: next / previous changed file (`]c` / `[c` within a file) |
+| tmux: `Ctrl-b` then `h j k l` | Move between tmux panes (`Shift+←/→` switches windows) |
+
+Lost? Press `<leader>` and wait (which-key), or `?` / `g?` inside the explorer or diff view.
 
 ## Keymaps
 
@@ -77,6 +101,17 @@ Python auto-uses the project's `.venv/` if present.
 | `Ctrl-h/j/k/l`   | Move between splits            |
 | `J` / `K` (visual)| Move selected lines down/up   |
 
+**File explorer (neo-tree)** — `nvim .` opens it automatically
+
+| Key              | Action                              |
+|------------------|-------------------------------------|
+| `<leader>e`      | Show / hide (jumps to current file) |
+| click / `Enter`  | Expand folder / open file           |
+| `a`              | New file (end with `/` for folder)  |
+| `r` / `d`        | Rename / delete                     |
+| `H`              | Show / hide hidden files            |
+| `?`              | All explorer shortcuts              |
+
 **Find (telescope)**
 
 | Key           | Action                       |
@@ -86,6 +121,9 @@ Python auto-uses the project's `.venv/` if present.
 | `<leader>fb`  | Open buffers                 |
 | `<leader>fs`  | Symbols in file              |
 | `<leader>ft`  | Pick theme (live preview)    |
+| `<leader>fF`  | Find files of a type (pick from list, or Other...) |
+| `<leader>fG`  | Search text in files of a type (type a word to see results) |
+| `<leader>mr`  | Toggle markdown rendering (in .md files) |
 
 **Code (LSP)** — `gr*`, `K`, `Ctrl-s`, `]d` are Neovim built-ins
 
@@ -123,6 +161,9 @@ Python auto-uses the project's `.venv/` if present.
 | `]h` / `[h`   | Next / previous git change  |
 | `<leader>gp`  | Preview git change          |
 | `<leader>gb`  | Blame line                  |
+| `<leader>gd`  | Diff view of all changes (toggle) |
+| `<leader>gh`  | History of current file     |
+| `<leader>gg`  | Lazygit (`q` to close)      |
 
 **Python only**
 
@@ -173,6 +214,7 @@ return {
 
 ```sh
 brew install neovim git ripgrep tree-sitter-cli
+brew install --cask font-jetbrains-mono-nerd-font   # then pick it as your terminal font (icons)
 git clone <repo> ~/.config/nvim
 nvim   # plugins + parsers install automatically
 ```
