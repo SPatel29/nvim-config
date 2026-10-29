@@ -1,5 +1,5 @@
 -- Language servers: errors, go-to-definition, rename, auto-imports, hover
--- TypeScript: vtsls + eslint | Python: pyright (types) + ruff (linting)
+-- TypeScript: vtsls + eslint | Python: pyright (types) + ruff (linting) | Java: jdtls
 return {
   "mason-org/mason-lspconfig.nvim",
   event = { "BufReadPre", "BufNewFile" },
@@ -9,7 +9,7 @@ return {
     "saghen/blink.cmp", -- load first so servers get completion capabilities
   },
   opts = {
-    ensure_installed = { "vtsls", "eslint", "pyright", "ruff" }, -- auto-installed and auto-enabled
+    ensure_installed = { "vtsls", "eslint", "pyright", "ruff", "jdtls" }, -- auto-installed and auto-enabled
   },
   config = function(_, opts)
     vim.diagnostic.config({

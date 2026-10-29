@@ -19,7 +19,7 @@
     └── plugins/          # One file per plugin/group (auto-loaded)
         ├── colorscheme.lua  # material (palenight), tokyonight
         ├── telescope.lua    # fuzzy finder
-        ├── lsp.lua          # language servers (TS, ESLint, Python)
+        ├── lsp.lua          # language servers (TS, ESLint, Python, Java)
         ├── completion.lua   # autocomplete popup
         ├── treesitter.lua   # syntax highlighting
         ├── explorer.lua     # neo-tree file explorer sidebar
@@ -69,11 +69,14 @@
 |------------|-----------------------------------|-------------------------|
 | TypeScript | vtsls (types), eslint (lint)      | prettier + ESLint fixes |
 | Python     | pyright (types), ruff (lint)      | ruff (sort imports + format) |
-| Kotlin, Java | — (syntax highlighting only)    | —                       |
+| Java       | jdtls (compiler errors)           | jdtls                   |
+| Kotlin     | — (syntax highlighting only)      | —                       |
 
 Files auto save when you leave insert mode, change text in normal mode (`dd`, `p`, `u`), switch buffers, or switch away from nvim. Saving doesn't format; use `<leader>cf`.
 
 Python auto-uses the project's `.venv/` if present.
+
+Java: open files inside a project with a build file (e.g. `pom.xml`) for full errors; a loose `.java` file only gets syntax errors. The first open of a project takes a few seconds to load.
 
 ## Navigation at a glance
 
