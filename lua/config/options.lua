@@ -28,3 +28,10 @@ opt.splitright = true
 opt.splitbelow = true
 opt.undofile = true
 opt.updatetime = 250
+
+-- Extra file types (so they get syntax highlighting)
+vim.filetype.add({
+  extension = {
+    avsc = "json", -- .avsc schema files are JSON
+  },
+})

@@ -8,6 +8,7 @@ return {
     require("nvim-treesitter").install({
       "typescript", "tsx", "javascript", "json", "html", "css",
       "python", "toml",
+      "kotlin", "java",
       "lua", "markdown", "markdown_inline", "yaml", "bash", "vim", "vimdoc",
     })
 
