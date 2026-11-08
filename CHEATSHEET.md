@@ -18,7 +18,7 @@
     │   ├── autocmds.lua  # Auto save
     │   └── winbar.lua    # File name bar at the top of each window + tab title
     └── plugins/          # One file per plugin/group (auto-loaded)
-        ├── colorscheme.lua  # material (palenight), tokyonight
+        ├── colorscheme.lua  # tokyonight (moon), material
         ├── telescope.lua    # fuzzy finder
         ├── lsp.lua          # language servers (TS, ESLint, Python, Java)
         ├── completion.lua   # autocomplete popup
@@ -46,8 +46,10 @@
 | Plugin            | What it does                                        |
 |-------------------|-----------------------------------------------------|
 | lazy.nvim         | Plugin manager (`:Lazy`)                            |
-| material.nvim     | Theme (palenight style)                             |
-| tokyonight.nvim   | Backup theme (`:colorscheme tokyonight`)            |
+| tokyonight.nvim   | Theme (moon style)                                  |
+| material.nvim     | Backup theme (`:colorscheme material`)              |
+| indent-blankline  | Faint indent guide lines                            |
+| mini.indentscope  | Indent level under the cursor drawn in blue         |
 | telescope.nvim    | Fuzzy find files, text, symbols                     |
 | mason.nvim        | Installs language servers/tools (`:Mason`)          |
 | nvim-lspconfig    | Configs for language servers (see below)            |
@@ -104,6 +106,8 @@ Lost? Press `<leader>` and wait (which-key), or `?` / `g?` inside the explorer o
 | `<leader>w`      | Save (files also auto save)    |
 | `<leader>q`      | Quit                           |
 | `<leader>l`      | Open Lazy (plugin manager)     |
+| `<leader>a`      | Show/hide Claude Code split    |
+| `<C-h>`          | Back to code from Claude       |
 | `Esc`            | Clear search highlight         |
 | `Ctrl-h/j/k/l`   | Move between splits            |
 | `J` / `K` (visual)| Move selected lines down/up   |

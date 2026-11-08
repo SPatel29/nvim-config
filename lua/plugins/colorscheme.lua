@@ -1,35 +1,38 @@
 return {
   -- Active theme: loads at startup
   {
-    "marko-cerovac/material.nvim",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.g.material_style = "palenight" -- darker | lighter | oceanic | palenight | deep ocean
-      require("material").setup({
-        custom_highlights = {
+      require("tokyonight").setup({
+        style = "moon", -- storm | moon | night | day
+        on_highlights = function(hl, c)
           -- Annotations: olive-yellow text, no background box
-          ["@attribute"] = { fg = "#BBB529", bg = "NONE" },
-          -- Fields and keys (YAML/JSON keys, obj.field, class fields): coral instead of dim gray
-          ["@property"] = { fg = "#F07178" },
-          ["@variable.member"] = { fg = "#F07178" },
-          -- Comments: light blue italic, so they don't look like fields
-          ["@comment"] = { fg = "#8DA3CA", italic = true },
-          ["Comment"] = { fg = "#8DA3CA", italic = true },
+          hl["@attribute"] = { fg = "#BBB529", bg = "NONE" }
+          -- Fields and keys (YAML/JSON keys, obj.field, class fields): coral
+          hl["@property"] = { fg = c.red }
+          hl["@variable.member"] = { fg = c.red }
+          -- Comments: light blue italic, brighter than tokyonight's default dim comments
+          hl["@comment"] = { fg = "#8DA3CA", italic = true }
+          hl.Comment = { fg = "#8DA3CA", italic = true }
           -- Test files in Telescope results (see telescope.lua)
-          TelescopeTestFile = { fg = "#C3E88D" },
+          hl.TelescopeTestFile = { fg = c.green }
           -- The matched word in the grep preview: bright yellow box, near-black bold text
-          TelescopeMatchWord = { fg = "#1B1E2B", bg = "#FFCB6B", bold = true },
+          hl.TelescopeMatchWord = { fg = c.black, bg = c.yellow, bold = true }
           -- File name bar at the top of each window (see config/winbar.lua)
-          WinBarFile = { fg = "#EEFFFF", bold = true },
-          WinBarDir = { fg = "#676E95", italic = true },
-          WinBarModified = { fg = "#FFCB6B" },
-        },
+          hl.WinBarFile = { fg = c.fg, bold = true }
+          hl.WinBarDir = { fg = c.dark3, italic = true }
+          hl.WinBarModified = { fg = c.yellow }
+          -- Indent guides (see editor.lua): faint lines, the cursor's indent level in bright blue
+          hl.IblIndent = { fg = c.fg_gutter, nocombine = true }
+          hl.MiniIndentscopeSymbol = { fg = c.blue1, nocombine = true }
+        end,
       })
-      vim.cmd.colorscheme("material")
+      vim.cmd.colorscheme("tokyonight-moon")
     end,
   },
 
-  -- Installed but only loaded when switched to (:colorscheme tokyonight)
-  { "folke/tokyonight.nvim", lazy = true },
+  -- Previous theme, only loaded when switched to (:colorscheme material)
+  { "marko-cerovac/material.nvim", lazy = true },
 }
