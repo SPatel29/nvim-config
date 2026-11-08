@@ -23,6 +23,24 @@ return {
         hide_gitignored = true, -- hides gitignored files (e.g. build output) from the tree and `/` search
         hide_by_name = { ".git", ".DS_Store" },
       },
+      window = {
+        mappings = {
+          -- On the "(N hidden items)" line, Enter/double-click shows hidden files instead of
+          -- opening a bogus "<name>_hidden_message" file (which neo-tree would then crash on)
+          ["<cr>"] = "open_or_show_hidden",
+          ["<2-LeftMouse>"] = "open_or_show_hidden",
+        },
+      },
+      commands = {
+        open_or_show_hidden = function(state)
+          local cmds = require("neo-tree.sources.filesystem.commands")
+          if state.tree:get_node().type == "message" then
+            cmds.toggle_hidden(state)
+          else
+            cmds.open(state)
+          end
+        end,
+      },
     },
   },
 }

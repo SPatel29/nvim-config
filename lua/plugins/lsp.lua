@@ -4,7 +4,7 @@ return {
   "mason-org/mason-lspconfig.nvim",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    { "mason-org/mason.nvim", opts = {} }, -- :Mason to install/manage servers
+    { "mason-org/mason.nvim", cmd = "Mason", opts = {} }, -- :Mason to install/manage servers (works before opening a file)
     "neovim/nvim-lspconfig",
     "saghen/blink.cmp", -- load first so servers get completion capabilities
   },

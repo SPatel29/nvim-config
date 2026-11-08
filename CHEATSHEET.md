@@ -15,7 +15,8 @@
     │   ├── lazy.lua      # Plugin manager bootstrap (rarely touched)
     │   ├── options.lua   # Built-in Neovim settings
     │   ├── keymaps.lua   # Shortcuts that don't need a plugin
-    │   └── autocmds.lua  # Auto save
+    │   ├── autocmds.lua  # Auto save
+    │   └── winbar.lua    # File name bar at the top of each window + tab title
     └── plugins/          # One file per plugin/group (auto-loaded)
         ├── colorscheme.lua  # material (palenight), tokyonight
         ├── telescope.lua    # fuzzy finder
@@ -123,13 +124,16 @@ Lost? Press `<leader>` and wait (which-key), or `?` / `g?` inside the explorer o
 | Key           | Action                       |
 |---------------|------------------------------|
 | `<leader>ff`  | Find files                   |
-| `<leader>fg`  | Search text in project       |
+| `<leader>fg`  | Search text in project (whole words; `Ctrl-g` toggles partial) |
 | `<leader>fb`  | Open buffers                 |
 | `<leader>fs`  | Symbols in file              |
 | `<leader>ft`  | Pick theme (live preview)    |
 | `<leader>fF`  | Find files of a type (pick from list, or Other...) |
 | `<leader>fG`  | Search text in files of a type (type a word to see results) |
 | `<leader>mr`  | Toggle markdown rendering (in .md files) |
+
+Searches include hidden folders like `.github` (not `.git`). Test files show in green.
+File search matches exact text, not scattered letters: `error` = any case, `Error` = exact case, `client test` = both words.
 
 **Code (LSP)** — `gr*`, `K`, `Ctrl-s`, `]d` are Neovim built-ins
 
